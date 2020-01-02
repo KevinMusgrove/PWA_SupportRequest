@@ -1,13 +1,138 @@
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding-top: 4.5rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+}
+
+.alert-pre {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+#btnSection input{
+  margin-left:9px;
+  margin-right:9px;
+  margin-bottom: 15px;  
+  height: 40px;
+}
+
+#appHeader{
+  color: #F3F2F1;
+  margin-top: 15px;
+}
+
+.required:before{
+  content:"*";
+  font-weight:bold;
+  color: red;
+}
+
+.simple-react-notifier .item button {
+  cursor: pointer;
+  color: white;
+  background: transparent;
+  border: 0;
+  position: relative;
+  top: -5px;
+  right: -38px;
+}
+
+.form-control {
+  background-color: rgb(247, 245, 244) !important;
+}
+
+html,
+body{
+ height: 100%;
+}
+
+#cover {
+  background: #222;
+  background-size: cover;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#cover-caption {
+  width: 100%;
+}
+
+.inputLabel{  
+  font-weight:bold;
+  color: #F3F2F1;
+  font-size: 14px;
+}
+
+.loader{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+#btnSignInMain{  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #5E5E5E;
+  font-weight: 600;
+  background-color: #FFF;
+  height: 41px;
+  border: solid 1px #8C8C8C;
+  padding-top:8px;
+  padding-right: 20px;  
+  position: absolute;
+  top: 50%;
+}
+
+#btnSignInMain::before{
+  content: url("./microsoftLogo.svg");  
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 1px;
+  float: left;
+}
+
+#signIn{
+  display: flex;
+  justify-content: center;         
+}
+
+@media only screen and (min-width: 680px) {
+  #signIn > p{
+    color: #FFF;  
+    font-size: 20px;
+    position: absolute;
+    top: 42%;  
+  }
+}
+
+@media only screen and (max-width: 679px) {
+  #signIn > p{
+    color: #FFF;      
+    position: absolute;
+    top: 40%;        
+    text-align: center;
+    padding: 5px;
+  }
+}
+
+.dropdown-menu{
+  white-space: nowrap;
+  border-radius: 0.55rem !important;  
+}
+
+.nav-link{
+  color: #FFF !important;
+}
+
+.ant-select-arrow{
+  user-select: none;
+  color: #212529;
+  font-size: 13px;
 }

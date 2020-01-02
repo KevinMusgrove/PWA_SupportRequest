@@ -1,17 +1,42 @@
 {
-  "name": "graph-tutorial",
+  "name": "support-request",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://atbsupportrequest.azurewebsites.net/",
   "dependencies": {
+    "@babel/runtime": "^7.5.5",
+    "@fortawesome/fontawesome-free": "^5.8.2",
+    "@microsoft/microsoft-graph-client": "^1.6.0",
+    "@progress/kendo-react-dropdowns": "^3.3.0",
+    "@progress/kendo-react-intl": "^3.3.0",
+    "antd": "^3.23.2",
+    "bootstrap": "^4.3.1",
+    "evergreen-ui": "^4.18.3",
+    "filepond": "^4.6.1",
+    "filepond-plugin-file-encode": "^2.1.4",
+    "filepond-plugin-image-preview": "^4.4.0",
+    "moment": "^2.24.0",
+    "msal": "^1.0.0",
+    "npm": "^6.11.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react-filepond": "^7.0.1",
+    "react-loader-spinner": "^3.1.4",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.1.1",
+    "react-spring": "^8.0.27",
+    "react-toast-notifications": "^2.2.5",
+    "reactstrap": "^8.0.0",
+    "simple-react-notifications": "^1.2.13",
+    "toasted-notes": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
   }
 }
