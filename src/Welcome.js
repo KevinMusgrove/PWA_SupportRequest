@@ -37,6 +37,7 @@ class RequestForm extends React.Component{
   }
 
   devices = ["Laptop","Desktop","Monitor","Bluetooth headset","Wired headset","Cell phone","Desk phone","Keyboard","Mouse","Speakers","Printer","Tablet","Not listed"];
+  //location array is not needed due to changing the location control to a freeform textbox.
   locations = ["Location 1"," Location 2"," Location 3"];
   priorites = ["High","Medium","Low"]
 
@@ -58,7 +59,7 @@ class RequestForm extends React.Component{
         let priority = this.state.priorityValue;        
         let filePondObjects = fileUpload.current.getFiles();
         let files = [];
-        if(firstName.trim() == "" || lastName.trim() == "" || location.trim() == "" || email.trim() == "" || phone.trim() == "" || device.trim() == "" || priority.trim() == "" || issueDesc.trim() == ""){
+        if(firstName.trim() === "" || lastName.trim() === "" || location.trim() === "" || email.trim() === "" || phone.trim() === "" || device.trim() === "" || priority.trim() === "" || issueDesc.trim() === ""){
           notifier.error(`Error: Please fill out all required fields.`);
           this.setState({isLoading:false}); 
           return;
@@ -131,7 +132,7 @@ class RequestForm extends React.Component{
     isLoading: false,deviceValue:"",priorityValue:"Medium",locationValue:"",phoneValue:""
   });
   document.getElementById("tbIssueDesc").value = "";    
-  if(fileUpload.current.getFiles().length != 0){                
+  if(fileUpload.current.getFiles().length !== 0){                
       fileUpload.current.getFiles().forEach(file => {
           fileUpload.current.removeFile(file);
       });        

@@ -1,4 +1,3 @@
-import { async } from 'q';
 var graph = require('@microsoft/microsoft-graph-client');
 
 function getAuthenticatedClient(accessToken) {
@@ -14,8 +13,7 @@ function getAuthenticatedClient(accessToken) {
 }
 
 export async function sendEmail(accessToken,firstName,lastName,location,email,phone,device,priority,issueDesc,managerEmail,files){
-    const client = getAuthenticatedClient(accessToken);
-    var t = managerEmail;
+    const client = getAuthenticatedClient(accessToken);    
     debugger;
     let sendMail;
     if(managerEmail)
@@ -107,7 +105,7 @@ export async function getUserBlob(accessToken){
     }
   })
   .then(async response => {
-    if(response.status == 200)
+    if(response.status === 200)
     {
       const blob = await response.blob();
       return blob
