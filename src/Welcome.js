@@ -12,6 +12,7 @@ import "simple-react-notifications/dist/index.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
 import { Select } from 'antd';
+import $ from "jquery";
 
 let fileUpload = React.createRef();
 registerPlugin(FilePondPluginFileEncode);
@@ -37,7 +38,6 @@ class RequestForm extends React.Component{
   }
 
   devices = ["Laptop","Desktop","Monitor","Bluetooth headset","Wired headset","Cell phone","Desk phone","Keyboard","Mouse","Speakers","Printer","Tablet","Not listed"];
-  //location array is not needed due to changing the location control to a freeform textbox.
   locations = ["Location 1"," Location 2"," Location 3"];
   priorites = ["High","Medium","Low"]
 
@@ -123,10 +123,14 @@ class RequestForm extends React.Component{
 }
 
  ClearForm(){    
+  $('#lblDevice').addClass('empty');
+  $('#lblLocation').addClass('empty');  
+  $('#lblDesc').addClass('empty');
   var tbPhone = document.getElementById("tbPhone");
   if(tbPhone)
   {
     tbPhone.value = "";
+    $('#lblPhone').addClass('empty');
   }
   this.setState({
     isLoading: false,deviceValue:"",priorityValue:"Medium",locationValue:"",phoneValue:""
@@ -140,12 +144,15 @@ class RequestForm extends React.Component{
 }
 
 selectDevice = value => {
+  $('#lblDevice').removeClass('empty');
    this.setState((prevState, props) =>{
      return{isLoading:prevState.isLoading,priorityValue:prevState.priorityValue,locationValue:prevState.locationValue,phoneValue:prevState.phoneValue,deviceValue:value}
    })
 }
 
 selectLocation = value => {
+  $('#lblLocation').removeClass('empty');
+  debugger;
   this.setState((prevState, props) =>{
     return{isLoading:prevState.isLoading,priorityValue:prevState.priorityValue,deviceValue:prevState.deviceValue,phoneValue:prevState.phoneValue,locationValue:value}
   })
@@ -157,9 +164,20 @@ selectPriority = value => {
   })
 }
 selectPhone= value => {
+  $('#lblPhone').removeClass('empty');
   this.setState((prevState, props) =>{
     return{isLoading:prevState.isLoading,deviceValue:prevState.deviceValue,locationValue:prevState.locationValue,priorityValue:prevState.priorityValue,phoneValue:value}
   })
+}
+
+descChange = value => {  
+  if(value.target.value.trim() !== ""){
+    $('#lblDesc').removeClass('empty');
+  }
+  else{
+    $('#lblDesc').addClass('empty');
+  }
+
 }
 
   render(){
@@ -175,19 +193,19 @@ selectPhone= value => {
             <div className="col-md-6 offset-md-3">
               <form>
                 <div className="form-group">    
-                    <label className="inputLabel">* First Name</label>   
+                    <label id='lblFirstname' className="inputLabel">* First Name</label>   
                     <input type="text" className="form-control" id="tbFirstname" defaultValue={this.props.user.firstName} placeholder="First Name" required={true}/>                                                            
                 </div>
                 <div className="form-group">
-                  <label className="inputLabel">* Last Name</label>   
+                  <label id='lblLastname' className="inputLabel">* Last Name</label>   
                   <input type="text" className="form-control" id="tbLastname" defaultValue={this.props.user.lastName} placeholder="Last Name" required/>
                 </div>
                     <div className="form-group">
-                        <label className="inputLabel">* Email</label>   
+                        <label id='lblEmail' className="inputLabel">* Email</label>   
                         <input type="text" className="form-control" id="tbEmail" defaultValue={this.props.user.email} placeholder="Email" required/>
                     </div>
                     <div className="form-group">
-                        <label className="inputLabel">* Phone</label>   
+                        <label id='lblPhone' className="inputLabel">* Phone</label>   
                         {this.props.user.cellPhone && this.props.user.bussinessPhone ? 
                             <Select                      
                               value={this.state.phoneValue || this.props.user.cellPhone || this.props.user.bussinessPhone}
@@ -206,7 +224,7 @@ selectPhone= value => {
                         }                        
                     </div>
                     <div className="form-group">
-                      <label className="inputLabel">* Location</label>   
+                      <label id="lblLocation" className="inputLabel empty">* Location</label>   
                       <Select                      
                         value={this.state.locationValue}
                         showSearch={true}
@@ -222,7 +240,7 @@ selectPhone= value => {
                       </Select>
                     </div>                                  
                     <div className="form-group">
-                      <label className="inputLabel">* Issue Priority</label>   
+                      <label id='lblPriority' className="inputLabel">* Issue Priority</label>   
                       <Select                      
                         value={this.state.priorityValue}
                         defaultValue="Medium"
@@ -239,7 +257,7 @@ selectPhone= value => {
                       </Select>
                     </div>
                     <div className="form-group">
-                      <label className="inputLabel">* Device with Issue</label>   
+                      <label id='lblDevice' className="inputLabel empty">* Device with Issue</label>   
                       <Select                      
                         value={this.state.deviceValue}
                         showSearch={true}
@@ -255,8 +273,8 @@ selectPhone= value => {
                       </Select>
                     </div>
                     <div className="form-group">
-                        <label className="inputLabel">* Issue Description</label>   
-                        <textarea className="form-control" rows="3" id="tbIssueDesc" placeholder="Issue Description" required></textarea> 
+                        <label id='lblDesc' className="inputLabel empty">* Issue Description</label>   
+                        <textarea className="form-control" rows="3" id="tbIssueDesc" onChange={this.descChange} placeholder="Issue Description" required></textarea> 
                     </div>
                     <label className="inputLabel">Attachments</label>   
                     <FilePond id="fileControl" allowMultiple={true} ref={fileUpload}/>

@@ -71,6 +71,10 @@ body{
   font-size: 14px;
 }
 
+.empty{
+  color:#dc3545 !important;
+}
+
 .loader{
   display: flex;
   justify-content: center;
